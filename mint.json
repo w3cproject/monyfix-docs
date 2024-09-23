@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Monyfix docs",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/monyfix_logo.svg",
+    "light": "/logo/monyfix_logo.svg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon-32x32.png",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
@@ -15,15 +15,21 @@
       "to": "#07C983"
     }
   },
+  "api": {
+    "baseUrl": "https://api-dev.monyfix.tech",
+    "auth": {
+      "method": "bearer"
+    }
+  },
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "support:@monyfix.tech"
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Website",
+    "url": "https://monyfix.com"
   },
   "tabs": [
     {
@@ -33,39 +39,37 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
+      "name": "Swagger api",
       "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "url": "https://api-dev.monyfix.tech/docs"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "name": "Admin panel",
+      "icon": "lock",
+      "url": "https://admin-dev.monyfix.tech/admin"
     },
     {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "name": "Store panel",
+      "icon": "toolbox",
+      "url": "https://stores.monyfix.tech"
+    },
+    {
+      "name": "Task tracker",
+      "icon": "list-check",
+      "url": "https://tracker.monyfix.tech:8443"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "get-started/introduction"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Магазины",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "stores/about"
       ]
     },
     {
@@ -75,17 +79,67 @@
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Auth",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/auth/register-new-user",
+        "api-reference/auth/verify-sms-code",
+        "api-reference/auth/login-access-token",
+        "api-reference/auth/refresh-token",
+        "api-reference/auth/login-user",
+        "api-reference/auth/store-login"
+      ]
+    },
+    {
+      "group": "Stores",
+      "pages": [
+        "api-reference/stores/create-store",
+        "api-reference/stores/get-stores",
+        "api-reference/stores/get-single-store",
+        "api-reference/stores/get-store-products"
+      ]
+    },
+    {
+      "group": "Products",
+      "pages": [
+        "api-reference/products/create-product",
+        "api-reference/products/get-products",
+        "api-reference/products/get-single-product"
+      ]
+    },
+    {
+      "group": "Categories",
+      "pages": [
+        "api-reference/categories/get-categories",
+        "api-reference/categories/get-category-products"
+      ]
+    },
+    {
+      "group": "Users",
+      "pages": [
+        "api-reference/users/get-user-by-id",
+        "api-reference/users/read-current-user",
+        "api-reference/users/update-user-by-id"
+      ]
+    },
+    {
+      "group": "Rounds",
+      "pages": [
+        "api-reference/rounds/get-rounds",
+        "api-reference/rounds/create-round"
+      ]
+    },
+    {
+      "group": "Payments",
+      "pages": [
+        "api-reference/payments/get-user-payments"
+      ]
+    },
+    {
+      "group": "Elastic Search",
+      "pages": [
+        "api-reference/elastic/index-product",
+        "api-reference/elastic/search-products"
       ]
     }
-  ],
-  "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
-  }
+  ]
 }
