@@ -67,15 +67,27 @@
       ]
     },
     {
-      "group": "Магазины",
+      "group": "Экраны и методы",
       "pages": [
-        "stores/about"
+        "screens/onboarding",
+        "screens/main",
+        "screens/store",
+        "screens/catalog",
+        "screens/categories",
+        "screens/search",
+        "screens/profile"
       ]
     },
     {
       "group": "API Documentation",
       "pages": [
         "api-reference/introduction"
+      ]
+    },
+    {
+      "group": "Onboarding",
+      "pages": [
+        "api-reference/onboarding/get-onboarding-list"
       ]
     },
     {
@@ -110,6 +122,7 @@
       "group": "Categories",
       "pages": [
         "api-reference/categories/get-categories",
+        "api-reference/categories/get-single-category",
         "api-reference/categories/get-category-products"
       ]
     },
@@ -118,7 +131,7 @@
       "pages": [
         "api-reference/users/get-user-by-id",
         "api-reference/users/read-current-user",
-        "api-reference/users/update-user-by-id"
+        "api-reference/users/update-current-user"
       ]
     },
     {

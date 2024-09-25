@@ -1,0 +1,52 @@
+---
+title: Поиск
+description: Elasticsearch поиск по товарам
+icon: 'shop'
+---
+
+## Как добавить товар для индексации
+
+Добавления товара для индексации осуществляется с помощью `POST` запроса к API `/elastic/index-product`.
+
+<Card
+  title="Index product"
+  icon="link"
+  href="/api-reference/elastic/index-product"
+>
+  Перейти к роуту и изучить основные поля
+</Card>
+
+<Note>
+  Данный роут **НЕ** требует JWT авторизации.
+</Note>
+
+В теле запроса нужно передать `json` с `ID` продукта:
+
+```json
+{
+  "id": "int"
+}
+```
+
+## Как искать товары
+
+Поиск товаров осуществляется с помощью `GET` запроса к API `/elastic/search`.
+
+Для указания значения поиска используется `GET` параметр `query`:
+
+`{api_url}/elastic/search?query=Кроссовки`
+
+### Структура ответа
+
+Метод возвращает массив найденных товаров:
+
+```json
+[
+  {
+    "id": "int",
+    "name": "string",
+    "detail_desc": "string",
+    "price": "int"
+  }
+]
+```

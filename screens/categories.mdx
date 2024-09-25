@@ -1,0 +1,91 @@
+---
+title: Категории товаров
+description: Сущность категорий товаров
+icon: 'shop'
+---
+
+## Как получить список категорий
+
+Получить список категорий можно с помощью `GET` запроса к API `/categories`.
+
+<Card
+  title="Get categories list"
+  icon="link"
+  href="/api-reference/categories/get-categories"
+>
+  Перейти к роуту и изучить основные поля
+</Card>
+
+<Note>
+  Данный роут **требует** JWT авторизацию для получения данных.
+</Note>
+
+## Как получить одну категорию
+
+Получить одину категорию можно с помощью `GET` запроса к API `/categories/{id}` по `ID` категории.
+
+<Card
+  title="Get single category"
+  icon="link"
+  href="/api-reference/categories/get-single-category"
+>
+  Перейти к роуту и изучить основные поля
+</Card>
+
+<Note>
+  Данный роут **требует** JWT авторизацию для получения данных.
+</Note>
+
+### Структура ответа
+
+Метод возвращает объект или массив объектов, в зависимости роута:
+```json
+{
+  "id": "int",
+  "name": "string"
+}
+```
+
+## Как получить список товаров категории
+
+Получить список товаров конкретной категории можно с помощью `GET` запроса к API `/categories/{id}/products` по `ID` категории.
+
+<Card
+  title="Get category products"
+  icon="link"
+  href="/api-reference/categories/get-category-products"
+>
+  Перейти к роуту и изучить основные поля
+</Card>
+
+<Note>
+  Данный роут **требует** JWT авторизацию для получения данных.
+</Note>
+
+В ответ на запрос, вернется список объектов продукта:
+
+```json
+[
+  {
+    "id": "int",
+    "name": "string",
+    "price": "numeric",
+    "main_picture_url": "string",
+    "is_active": "bool",
+    "quantity": "int",
+    "store_id": "int",
+    "detail_desc": "string",
+    "question_id": "int"
+  }
+]
+```
+
+где:
+
+`price` - цена товара в **копейках**
+
+`quantity` - кол-во единиц товара (пока что будет всегда **1**)
+
+`question_id` - необезательное поле, вернет `ID` вопроса, привязанного к товару, если есть
+
+`store_id` - `ID` магазина, к которому привязан продукт

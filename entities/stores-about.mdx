@@ -1,12 +1,8 @@
 ---
-title: Reusable Snippets
-description: Reusable, custom snippets to keep content in sync
-icon: 'recycle'
+title: Магазины
+description: Сущность магазинов, предоставляющих товары
+icon: 'shop'
 ---
-
-import SnippetIntro from '/snippets/snippet-intro.mdx';
-
-<SnippetIntro />
 
 ## Creating a custom snippet
 
@@ -19,7 +15,16 @@ import SnippetIntro from '/snippets/snippet-intro.mdx';
   component.
 </Note>
 
-### Default export
+## Список магазинов
+
+Получить список всех магазинов можно с помощью метода:
+<Card
+  title="Get stores"
+  icon="frame"
+  href="/api-reference/stores/get-stores"
+>
+  Read the reference for the Frame component
+</Card>
 
 1. Add content to your snippet file that you want to re-use across multiple
    locations. Optionally, you can add variables that can be filled in via props
