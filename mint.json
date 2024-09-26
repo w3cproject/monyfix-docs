@@ -75,7 +75,8 @@
         "screens/catalog",
         "screens/categories",
         "screens/search",
-        "screens/profile"
+        "screens/profile",
+        "screens/user-teams"
       ]
     },
     {
@@ -131,7 +132,11 @@
       "pages": [
         "api-reference/users/get-user-by-id",
         "api-reference/users/read-current-user",
-        "api-reference/users/update-current-user"
+        "api-reference/users/update-current-user",
+        "api-reference/users/get-user-teams",
+        "api-reference/users/get-user-single-team",
+        "api-reference/users/create-user-team",
+        "api-reference/users/update-user-single-team"
       ]
     },
     {
