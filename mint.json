@@ -77,7 +77,8 @@
         "screens/search",
         "screens/profile",
         "screens/user-teams",
-        "screens/user-friends"
+        "screens/user-friends",
+        "screens/imports"
       ]
     },
     {
@@ -160,6 +161,12 @@
       "pages": [
         "api-reference/elastic/index-product",
         "api-reference/elastic/search-products"
+      ]
+    },
+    {
+      "group": "Imports",
+      "pages": [
+        "api-reference/imports/import-products"
       ]
     }
   ]

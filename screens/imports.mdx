@@ -1,0 +1,34 @@
+---
+title: Импорт товаров
+description: Импорт товаров с помощью csv файла
+icon: 'shop'
+---
+
+## Как сделать импорт
+
+Получить список групп можно с помощью `POST` запроса к API `/imports/products`.
+
+<Card
+  title="Import products"
+  icon="link"
+  href="/api-reference/imports/import-products"
+>
+  Перейти к роуту и изучить основные поля
+</Card>
+
+<Note>
+  Данный роут **требует** JWT авторизацию для получения данных.
+
+  Импорт товаров осуществляется исключительно через веб интерфейс личного кабинета магазина - stores.monyfix.tech
+</Note>
+
+### Структура JSON Body
+
+Запрос отправляется с помощью `multipart/form-data` с двумяф обязательными полями: `file` и `store_id`.
+
+```json
+{
+  "file": "File",
+  "store_id": "int"
+}
+```
