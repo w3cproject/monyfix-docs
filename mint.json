@@ -76,19 +76,14 @@
         "screens/categories",
         "screens/search",
         "screens/profile",
-        "screens/user-teams"
+        "screens/user-teams",
+        "screens/user-friends"
       ]
     },
     {
       "group": "API Documentation",
       "pages": [
         "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "Onboarding",
-      "pages": [
-        "api-reference/onboarding/get-onboarding-list"
       ]
     },
     {
@@ -100,6 +95,26 @@
         "api-reference/auth/refresh-token",
         "api-reference/auth/login-user",
         "api-reference/auth/store-login"
+      ]
+    },
+    {
+      "group": "Users",
+      "pages": [
+        "api-reference/users/get-user-by-id",
+        "api-reference/users/read-current-user",
+        "api-reference/users/update-current-user",
+        "api-reference/users/get-user-teams",
+        "api-reference/users/get-user-single-team",
+        "api-reference/users/create-user-team",
+        "api-reference/users/update-user-single-team",
+        "api-reference/users/get-user-friends",
+        "api-reference/users/add-user-friends"
+      ]
+    },
+    {
+      "group": "Onboarding",
+      "pages": [
+        "api-reference/onboarding/get-onboarding-list"
       ]
     },
     {
@@ -125,18 +140,6 @@
         "api-reference/categories/get-categories",
         "api-reference/categories/get-single-category",
         "api-reference/categories/get-category-products"
-      ]
-    },
-    {
-      "group": "Users",
-      "pages": [
-        "api-reference/users/get-user-by-id",
-        "api-reference/users/read-current-user",
-        "api-reference/users/update-current-user",
-        "api-reference/users/get-user-teams",
-        "api-reference/users/get-user-single-team",
-        "api-reference/users/create-user-team",
-        "api-reference/users/update-user-single-team"
       ]
     },
     {
