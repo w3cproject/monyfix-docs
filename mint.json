@@ -72,7 +72,7 @@
         "screens/onboarding",
         "screens/main",
         "screens/store",
-        "screens/catalog",
+        "screens/products",
         "screens/categories",
         "screens/question-categories",
         "screens/search",
@@ -141,7 +141,8 @@
       "pages": [
         "api-reference/categories/get-categories",
         "api-reference/categories/get-single-category",
-        "api-reference/categories/get-category-products"
+        "api-reference/categories/get-category-products",
+        "api-reference/categories/get-categories-previews"
       ]
     },
     {
