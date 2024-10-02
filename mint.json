@@ -76,7 +76,7 @@
         "screens/categories",
         "screens/question-categories",
         "screens/search",
-        "screens/profile",
+        "screens/user",
         "screens/user-teams",
         "screens/user-friends",
         "screens/imports"
@@ -110,7 +110,8 @@
         "api-reference/users/create-user-team",
         "api-reference/users/update-user-single-team",
         "api-reference/users/get-user-friends",
-        "api-reference/users/add-user-friends"
+        "api-reference/users/add-user-friends",
+        "api-reference/users/add-user-rounds"
       ]
     },
     {
