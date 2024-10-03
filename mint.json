@@ -73,13 +73,15 @@
         "screens/main",
         "screens/store",
         "screens/products",
+        "screens/rounds",
         "screens/categories",
         "screens/question-categories",
         "screens/search",
         "screens/user",
         "screens/user-teams",
         "screens/user-friends",
-        "screens/imports"
+        "screens/imports",
+        "screens/ws"
       ]
     },
     {
@@ -110,8 +112,7 @@
         "api-reference/users/create-user-team",
         "api-reference/users/update-user-single-team",
         "api-reference/users/get-user-friends",
-        "api-reference/users/add-user-friends",
-        "api-reference/users/add-user-rounds"
+        "api-reference/users/add-user-friends"
       ]
     },
     {
@@ -156,7 +157,8 @@
       "group": "Rounds",
       "pages": [
         "api-reference/rounds/get-rounds",
-        "api-reference/rounds/create-round"
+        "api-reference/rounds/create-round",
+        "api-reference/rounds/get-single-round"
       ]
     },
     {
