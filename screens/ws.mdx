@@ -9,29 +9,333 @@ icon: 'shop'
 Подключиться к раунду можно с помощью `webSocket` по API `/ws/rounds/{id}` по `ID` раунда.
 
 <Note>
-  Каждое соединение юзера должно быть с его `access_token` в `query` запросе.
+  При первом подключении, необходимо сразу отправить `json` объект с `access_token` юзера в параметре `token`.
 </Note>
 
 Пример:
 
-```
-ws://api-dev.monyfix.tech/ws/rounds/5fceec3c-beab-48ef-bd0a-cf3f7722f12e?token=userAccessToken
+```dart
+final wsUrl = Uri.parse('ws://api-dev.monyfix.tech/ws/rounds/$roundId');
+    
+// Создаем подключение
+_channel = WebSocketChannel.connect(wsUrl);
+
+// Отправляем токен сразу после подключения
+_channel?.sink.add(jsonEncode({
+  'token': token
+}));
 ```
 
-Каждый ответ сопровождается `json` сообщением с `type` и `message`.
+Если `токен` **не передан**, сервер вернет ошибку и завершит `websocket` соединение
 
 ```json
 {
-  "type": "error", // тип события
+  "type": "error.auth",
+  "message": "Token not provided"
+}
+```
+
+Если передан **некорректный** `токен`, сервер вернет ошибку и завершит `websocket` соединение
+
+```json
+{
+  "type": "error.auth",
+  "message": "Invalid authentication data format"
+}
+```
+
+Если передан **корректный** `токен`, но юзера в него не приглашали, сервер вернет ошибку и закроет `websocket` соединение
+
+```json
+{
+  "type": "error.round",
+  "message": "Round access error"
+}
+```
+
+Если передан **корректный** `токен`, сервер отправит ивент `participant_connected` и `participant_update`
+
+```json
+
+// participant_connected
+
+{
+  "type": "participant_connected",
+  "message": "Participant connected",
+  "user_id": "user_id"
+}
+
+// participant_update
+
+{
+  "type": "participant_update",
+  "message": "Participants updated",
+  "participants": [
+    {
+      "id": "user_id",
+      "phone": "user_phone",
+      "status": "user_status",
+      "name": "{first_name} {last_name}"
+    }] // Participants List
+}
+```
+
+В любом другом случае, сервер вернет
+
+```json
+{
+  "type": "error.auth",
+  "message": "HTTPException.detail"
+}
+```
+
+## Как отправлять ивенты на сервер
+
+Каждая отправка ивента с клиента сопровождается `json` сообщением с `type` ивента и параметрами `data` с `token` и другими.
+
+```json
+{
+  "type": "participant_update|participant_answered", // тип события
+  "data": {
+    "token": "user access token",
+    "status": "READY | NOT_READY", // для смены статуса
+    "answer": "answer_id" // для ответа на вопрос
+  }
+}
+```
+
+## Как принимать ивенты с сервера
+
+Каждая отправка ивента с сервера сопровождается `json` сообщением с `type` и `message`.
+
+```json
+{
+  "type": "participant_update|participant_disconnected...", // тип события
   "message": "message" // описание
 }
 ```
 
-| Type | Message | Условие
-| -------- | ------- | ------------ |
-| `error`     | Раунд не найден | Если раунд не найден по `id` |
-| `error`      | Вы не являетесь участником этого раунда | Если пользователь не является участником этого раунда |
-| `status_update`      | Участник `user_id` готов! | Когда статус участника изменился на `READY` |
-| `status_update`   | Раунд начинается! | Когда все участники готовы и статус раунда меняется с `WAITING_FOR_PLAYERS` на `COUNTDOWN` (таймер) |
-| `answer`   | `user_id` ответил: `answer` | При ответе каждого участника |
-| `status_update`   | Участник `user_id` отключился | При отключении участника |
+## Ивенты, которые отправляет сервер
+
+### Participant connected
+
+Название ивента
+`participant_connected`
+
+Отправляется при первом подключении юзера. Отправляется всем участникам.
+
+Отправляет `json`
+
+```json
+{
+  "type": "participant_connected",
+  "message": "Participant connected",
+  "user_id": "user_id"
+}
+```
+
+и после этого отправляет ивент `participant_update`.
+
+### Participant disconnected
+
+Название ивента
+`participant_disconnected`
+
+Отправляется при разрыве `websocket` соединения. Отправляется всем участникам, кроме текущего.
+
+1. Отключает юзера от `webscocket`
+2. Изменяет статус юзера на `WAITING`
+3. Отправляет ивент `participant_disconnected`
+4. Отправляет ивент `participant_update`
+
+Отправляет `json`
+
+```json
+
+// participant_disconnected
+
+{
+  "type": "participant_disconnected",
+  "message": "Participant disconnected",
+  "user_id": "user_id"
+}
+
+// participant_update
+
+{
+  "type": "participant_update",
+  "message": "Participants updated",
+  "participants": [
+    {
+      "id": "user_id",
+      "phone": "user_phone",
+      "status": "user_status",
+      "name": "{first_name} {last_name}"
+    }] // Participants List
+}
+```
+
+### Participant update
+
+Название ивента
+`participant_update`
+
+Отправляется при изменении статуса готовности юзера, удалении или добавлении юзера из раунда. Отправляется всем участникам.
+
+Отправляет `json`
+
+```json
+{
+  "type": "participant_update",
+  "message": "Participants updated",
+  "participants": [
+    {
+      "id": "user_id",
+      "phone": "user_phone",
+      "status": "user_status",
+      "name": "{first_name} {last_name}"
+    }] // Participants List
+}
+```
+
+### Round countdown
+
+Название ивента
+`round_countdown`
+
+Отправляется, когда все участники имеют статус `READY`, для перехода на экран таймера. Отправляется всем участникам.
+
+Отправляет `json`
+
+```json
+{
+  "type": "round_countdown",
+  "message": "Countdown started: {countdown} seconds",
+  "countdown": 60 // секунды
+}
+```
+
+### Round question
+
+Название ивента
+`round_question`
+
+Отправляется, когда время таймера истекло, для перехода на экран вопроса. Отправляется всем участникам.
+
+Отправляет `json`
+
+```json
+{
+  "type": "round_question",
+  "message": "New question: {question_id}",
+  "question": {
+    // здесь будет объект вопроса с ответами
+  }
+}
+```
+
+### Round results
+
+Название ивента
+`round_results`
+
+Отправляется, когда все участники ответили на вопрос или таймер ответа на вопрос закончился, для перехода на экран результатов. Отправляется всем участникам.
+
+Отправляет `json`
+
+```json
+{
+  "type": "round_results",
+  "message": "Round results",
+  "results": [
+    // здесь будет объект результатов с ответами участников
+  ]
+}
+```
+
+## Ивенты, которые отправляет клиент
+
+### Participant update
+
+Ивент, который вызывается для обновления основных данных участников, таких как: `name`, `phone`, `id`, `status`.
+В основном срабатывает при первом подключении каждого пользователя и при смене статуса участника на `READY` или `NOT_READY`
+
+<Note>
+  Во всех ивентах, сервер ожидает `token` юзера в `data` параметре
+</Note>
+
+Название ивента
+`participant_update`
+
+JSON BODY
+```json
+data: {
+  "token": "user access token",
+  "status": "READY | NOT_READY"
+}
+```
+
+Пример
+
+```dart
+void sendMessage(String type, Map<String, dynamic> data) {
+  if (_channel == null) return;
+  
+  final message = {
+    'type': type,
+    'data': data
+  };
+  
+  _channel?.sink.add(jsonEncode(message));
+}
+
+ws.sendMessage('participant_update', {
+  'token': 'user access token',
+  'status': 'READY'
+});
+```
+
+### Participant answered
+
+Отправляется, когда участник ответил на вопрос в викторине.
+
+<Note>
+  Во всех ивентах, сервер ожидает `token` юзера в `data` параметре
+</Note>
+
+Название ивента
+`participant_answered`
+
+JSON BODY
+```json
+data: {
+  "token": "user access token",
+  "answer": "answer_id" // указывается id ответа из ранее полученного вопроса с ответами
+}
+```
+
+Пример
+
+```dart
+ws.sendMessage('participant_answered', {
+  'token': 'user access token',
+  'answer_id': '5'
+});
+```
+
+В случае, если ответ участника был последним (5 из 5), сервер пришлет ивент `round_results` с результатами раунда для перехода на экран результатов.
+
+
+
+
+## Коды ошибок
+
+Сервер может отправлять ошибки в виде сообщений с типом `error`, а также закрывать соединения с определенными `WebSocket` кодами. Вот список возможных кодов и ошибок:
+
+| Код ошибки | Описание | Когда возникает |
+| -------- | ------------------------------------- | ------------ |
+| `WS_1008_POLICY_VIOLATION	` | Политика безопасности нарушена (некорректный токен) | Токен аутентификации отсутствует, неверный или не передан в нужном формате |
+| `WS_1011_INTERNAL_ERROR	` | Внутренняя ошибка сервера | В случае непредвиденной ошибки на сервере |
+| `error` | Общие ошибки | В случаях непредвиденной ошибки |
+| `error.round` | Ошибки с доступом к раунду | При подключении юзера |
+| `error.auth` | Ошибки авторизации | В случае некорректного токена или его отсутствия |
