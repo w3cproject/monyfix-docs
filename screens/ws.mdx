@@ -22,7 +22,8 @@ _channel = WebSocketChannel.connect(wsUrl);
 
 // Отправляем токен сразу после подключения
 _channel?.sink.add(jsonEncode({
-  'token': token
+  'type': 'token',
+  'token': 'user jwt token'
 }));
 ```
 
@@ -227,9 +228,24 @@ _channel?.sink.add(jsonEncode({
 ```json
 {
   "type": "round_question",
-  "message": "New question: {question_id}",
+  "message": "Question started: {countdown_sec} seconds",
+  "question_start": "dt_now.isoformat()",
+  "question_end": "countdown_end.isoformat()",
+  "countdown": 60, // отсчет для таймера в секундах
   "question": {
-    // здесь будет объект вопроса с ответами
+    "id": "int",
+    "question_text": "str",
+    "picture_url": "str",
+    "question_type": "str",
+    "answers": {
+      "id": "int",
+      "answer_text": "str",
+      "is_correct": "bool"
+    },
+    "category": {
+      "id": "int",
+      "name": "str"
+    }
   }
 }
 ```
@@ -248,7 +264,13 @@ _channel?.sink.add(jsonEncode({
   "type": "round_results",
   "message": "Round results",
   "results": [
-    // здесь будет объект результатов с ответами участников
+    {
+      "name": "user name",
+      "picture": "picture url",
+      "answer_text": "text",
+      "answer_time": "22:457",
+      "is_winner": true // true | false
+    }
   ]
 }
 ```
@@ -295,12 +317,42 @@ ws.sendMessage('participant_update', {
 });
 ```
 
+### Round Countdown End
+
+Отправляется, когда время таймера истекло.
+
+Название ивента
+`round_countdown_end`
+
+Пример
+
+```dart
+ws.sendMessage('round_countdown_end', {
+  'token': 'user access token'
+});
+```
+
+### Round Question End
+
+Отправляется, когда время таймера для ответа на вопрос истекло.
+
+Название ивента
+`round_question_end`
+
+Пример
+
+```dart
+ws.sendMessage('round_question_end', {
+  'token': 'user access token'
+});
+```
+
 ### Participant answered
 
 Отправляется, когда участник ответил на вопрос в викторине.
 
 <Note>
-  Во всех ивентах, сервер ожидает `token` юзера в `data` параметре
+  Время ответа участника передается строго в формате **mm:ss.SSS** (22:45.343)  с учётом времени до тысячных долей секунды.
 </Note>
 
 Название ивента
@@ -310,7 +362,8 @@ JSON BODY
 ```json
 data: {
   "token": "user access token",
-  "answer": "answer_id" // указывается id ответа из ранее полученного вопроса с ответами
+  "answer": "answer_id", // указывается id ответа из ранее полученного вопроса с ответами
+  "response_time": "22:45.343" // время таймера в момент ответа с миллисекундами (3 символа после запятой)
 }
 ```
 
@@ -319,7 +372,8 @@ data: {
 ```dart
 ws.sendMessage('participant_answered', {
   'token': 'user access token',
-  'answer_id': '5'
+  'answer_id': '5',
+  'response_time': "22:45.343"
 });
 ```
 
