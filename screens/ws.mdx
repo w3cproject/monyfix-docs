@@ -279,12 +279,16 @@ _channel?.sink.add(jsonEncode({
   "message": "Round results",
   "results": [
     {
-      "name": "user name",
-      "picture": "picture url",
-      "answer_text": "text",
-      "answer_time": "22:457",
-      "is_winner": true // true | false
-    }
+        "id": "77eb8d8e-79ba-4871-9061-035f1321b22a", // id вопроса
+        "name": "Nikolai Pavlov",
+        "avatar": "mock_avatar_13.jpg",
+        "answer_time": "43:25.312", // реальное время ответа строкой
+        "answer_text": "Тихий", // вариант ответа текстом
+        "is_correct": true,
+        "total_time": 2605.312, // реальное время ответа в секундах
+        "is_winner": true
+    },
+    ...
   ]
 }
 ```
