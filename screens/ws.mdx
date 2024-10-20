@@ -397,6 +397,59 @@ ws.sendMessage('participant_answered', {
 
 В случае, если ответ участника был последним (5 из 5), сервер пришлет ивент `round_results` с результатами раунда для перехода на экран результатов.
 
+### Participant open chat
+
+Отправляется, когда участник открыл окно чата для получения сообщений.
+
+Название ивента
+`participant_open_chat`
+
+Пример
+
+```dart
+ws.sendMessage('participant_open_chat', {
+  'token': 'user access token'
+});
+```
+
+В ответ сервер отправит этот же ивент с массивом сообщений:
+
+```json
+{
+  "type": "participant_open_chat",
+  "message": "Participants open chat",
+  "messages": [
+    {
+      "user": {
+        "id": "str",
+        "name": "str",
+        "avatar": "str"
+      },
+      "content": "str",
+      "create_time": "datetime utc",
+      "is_me": true // true, если это сообщение юзера, который отправил запрос. false, если сообщение не его
+    }
+  ]
+}
+```
+
+### Chat message
+
+Отправляется, когда участник отправляет сообщение в чат.
+
+Название ивента
+`chat_message`
+
+Пример
+
+```dart
+ws.sendMessage('participant_open_chat', {
+  'token': 'user access token',
+  'content': 'user message',
+  'type': 'TEXT' // пока статика, будет меняться в зависимости от типа сообщения (изображение, видео и т.д.)
+});
+```
+
 ## Коды ошибок
 
 Сервер может отправлять ошибки в виде сообщений с типом `error`, а также закрывать соединения с определенными `WebSocket` кодами. Вот список возможных кодов и ошибок:
