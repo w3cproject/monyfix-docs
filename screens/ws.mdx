@@ -287,8 +287,65 @@ _channel?.sink.add(jsonEncode({
         "is_correct": true,
         "total_time": 2605.312, // реальное время ответа в секундах
         "is_winner": true
-    },
-    ...
+    }
+  ]
+}
+```
+
+### Chat history
+
+Название ивента
+`chat_history`
+
+Отправляется, когда участник открывает чат для загрузки сообщений в ответ на ивент `participant_open_chat`. Отправляется только конкретному участнику.
+
+Отправляет `json`
+
+```json
+{
+  "type": "chat_history",
+  "message": "Participant open chat",
+  "messages": [
+    {
+      "user": {
+        "id": "str",
+        "name": "str",
+        "avatar": "str"
+      },
+      "content": "str",
+      "create_time": "datetime utc",
+      "variant": "TEXT",
+      "is_me": true // всегда true
+    }
+  ]
+}
+```
+
+### New message
+
+Название ивента
+`new_message`
+
+Отправляется, когда участник отправил сообщение в чат в ответ на ивент `chat_message`. Отправляется всем участникам.
+
+Отправляет `json`
+
+```json
+{
+  "type": "new_message",
+  "message": "Participant send new message",
+  "messages": [
+    {
+      "user": {
+        "id": "str",
+        "name": "str",
+        "avatar": "str"
+      },
+      "content": "str",
+      "create_time": "datetime utc",
+      "variant": "TEXT",
+      "is_me": true // всегда true
+    }
   ]
 }
 ```
