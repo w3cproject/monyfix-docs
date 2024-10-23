@@ -151,3 +151,36 @@ icon: 'shop'
 `entry_fee` - стоимость входа в раунд
 
 `participants` - массив строк с телефонами участников
+
+## Как присоединиться к раунду
+
+Присоединиться к раунду можно с помощью `POST` запроса к API `/rounds/{id}/join`.
+
+<Card
+  title="Join round"
+  icon="link"
+  href="/api-reference/rounds/join-round"
+>
+  Перейти к роуту и изучить основные поля
+</Card>
+
+<Note>
+  Данный роут **требует** JWT авторизацию для получения данных.
+</Note>
+
+
+## Как покинуть раунд
+
+Покинуть раунд можно с помощью `DELETE` запроса к API `/rounds/{id}/leave`.
+
+<Card
+  title="Leave round"
+  icon="link"
+  href="/api-reference/rounds/leave-round"
+>
+  Перейти к роуту и изучить основные поля
+</Card>
+
+<Note>
+  Данный роут **требует** JWT авторизацию для получения данных.
+</Note>

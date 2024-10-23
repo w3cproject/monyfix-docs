@@ -158,7 +158,9 @@
       "pages": [
         "api-reference/rounds/get-rounds",
         "api-reference/rounds/create-round",
-        "api-reference/rounds/get-single-round"
+        "api-reference/rounds/get-single-round",
+        "api-reference/rounds/join-round",
+        "api-reference/rounds/leave-round"
       ]
     },
     {
