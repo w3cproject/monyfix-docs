@@ -399,7 +399,7 @@ ws.sendMessage('participant_answered', {
 
 ### Participant open chat
 
-Отправляется, когда участник открыл окно чата для получения сообщений.
+Отправляется конкретному участнику, когда он открыл окно чата для получения сообщений.
 
 Название ивента
 `participant_open_chat`
@@ -412,7 +412,7 @@ ws.sendMessage('participant_open_chat', {
 });
 ```
 
-В ответ сервер отправит этот же ивент с массивом сообщений:
+В ответ сервер отправит ивент `chat_history` с массивом сообщений:
 
 ```json
 {
@@ -427,6 +427,7 @@ ws.sendMessage('participant_open_chat', {
       },
       "content": "str",
       "create_time": "datetime utc",
+      "variant": "TEXT",
       "is_me": true // true, если это сообщение юзера, который отправил запрос. false, если сообщение не его
     }
   ]
@@ -435,7 +436,7 @@ ws.sendMessage('participant_open_chat', {
 
 ### Chat message
 
-Отправляется, когда участник отправляет сообщение в чат.
+Отправляется всем участникам, когда один из них отправляет сообщение в чат.
 
 Название ивента
 `chat_message`
@@ -450,6 +451,28 @@ ws.sendMessage('chat_message', {
 });
 ```
 
+В ответ сервер отправит ивент всем участникам `new_message` с массивом сообщений:
+
+```json
+{
+  "type": "new_message",
+  "message": "Participant send new message",
+  "messages": [
+    {
+      "user": {
+        "id": "str",
+        "name": "str",
+        "avatar": "str"
+      },
+      "content": "str",
+      "create_time": "datetime utc",
+      "variant": "TEXT",
+      "is_me": true // всегда true
+    }
+  ]
+}
+```
+
 ## Коды ошибок
 
 Сервер может отправлять ошибки в виде сообщений с типом `error`, а также закрывать соединения с определенными `WebSocket` кодами. Вот список возможных кодов и ошибок:
@@ -461,4 +484,4 @@ ws.sendMessage('chat_message', {
 | `error` | Общие ошибки | В случаях непредвиденной ошибки |
 | `error.round` | Ошибки с доступом к раунду | При подключении юзера |
 | `error.auth` | Ошибки авторизации | В случае некорректного токена или его отсутствия |
-| `error.chat` | Ошибки чата | В случае отсутствия параметров `content` или `type` |
+| `error.chat` | Ошибки чата | В случае отсутствия параметров `content` или `type` в ивенте `chat_message` |
