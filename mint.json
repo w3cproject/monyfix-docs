@@ -112,7 +112,10 @@
         "api-reference/users/create-user-team",
         "api-reference/users/update-user-single-team",
         "api-reference/users/get-user-friends",
-        "api-reference/users/add-user-friends"
+        "api-reference/users/add-user-friends",
+        "api-reference/users/get-user-rating",
+        "api-reference/users/add-user-rating-points",
+        "api-reference/users/get-user-payments"
       ]
     },
     {
@@ -126,8 +129,19 @@
       "pages": [
         "api-reference/stores/create-store",
         "api-reference/stores/get-stores",
-        "api-reference/stores/get-single-store",
-        "api-reference/stores/get-store-products"
+        "api-reference/stores/get-store-by-id",
+        "api-reference/stores/get-store-products",
+        "api-reference/stores/get-store-product-by-id",
+        "api-reference/stores/get-store-events",
+        "api-reference/stores/create-store-event",
+        "api-reference/stores/get-store-certificates"
+      ]
+    },
+    {
+      "group": "Events",
+      "pages": [
+        "api-reference/events/get-events",
+        "api-reference/events/get-event-by-id"
       ]
     },
     {
@@ -180,6 +194,12 @@
       "group": "Imports",
       "pages": [
         "api-reference/imports/import-products"
+      ]
+    },
+    {
+      "group": "App Settings",
+      "pages": [
+        "api-reference/app-settings/get-app-settings"
       ]
     }
   ]
