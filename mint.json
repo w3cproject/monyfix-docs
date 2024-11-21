@@ -197,6 +197,12 @@
       ]
     },
     {
+      "group": "Device tokens",
+      "pages": [
+        "api-reference/devices/add-device-token"
+      ]
+    },
+    {
       "group": "App Settings",
       "pages": [
         "api-reference/app-settings/get-app-settings"
