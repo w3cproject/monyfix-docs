@@ -180,7 +180,8 @@
         "api-reference/rounds/get-upcoming-rounds",
         "api-reference/rounds/invite-single-user-to-round",
         "api-reference/rounds/join-round",
-        "api-reference/rounds/leave-round"
+        "api-reference/rounds/leave-round",
+        "api-reference/rounds/rounds-user-already-in-round"
       ]
     },
     {
