@@ -115,7 +115,8 @@
         "api-reference/users/add-user-friends",
         "api-reference/users/get-user-rating",
         "api-reference/users/add-user-rating-points",
-        "api-reference/users/get-user-payments"
+        "api-reference/users/get-user-payments",
+        "api-reference/users/check-user-contacts"
       ]
     },
     {
