@@ -118,6 +118,7 @@
         "api-reference/users/get-user-payments",
         "api-reference/users/check-user-contacts",
         "api-reference/users/toggle-user-favorites",
+        "api-reference/users/get-user-favorites",
         "api-reference/users/get-user-certificates"
       ]
     },
