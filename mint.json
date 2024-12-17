@@ -104,7 +104,6 @@
     {
       "group": "Users",
       "pages": [
-        "api-reference/users/get-user-by-id",
         "api-reference/users/read-current-user",
         "api-reference/users/update-current-user",
         "api-reference/users/get-user-teams",
