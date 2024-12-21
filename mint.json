@@ -202,17 +202,10 @@
       ]
     },
     {
-      "group": "Search (whoosh)",
+      "group": "Search",
       "pages": [
         "api-reference/search/search",
         "api-reference/search/add-to-index"
-      ]
-    },
-    {
-      "group": "Elastic Search",
-      "pages": [
-        "api-reference/elastic/index-product",
-        "api-reference/elastic/search-products"
       ]
     },
     {
