@@ -196,6 +196,13 @@
       ]
     },
     {
+      "group": "Reels",
+      "pages": [
+        "api-reference/reels/get-reels",
+        "api-reference/reels/get-single-reels"
+      ]
+    },
+    {
       "group": "Filters",
       "pages": [
         "api-reference/filters/get-filters"
