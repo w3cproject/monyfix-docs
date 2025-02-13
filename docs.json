@@ -146,7 +146,8 @@
               "api-reference/rounds/leave-round",
               "api-reference/rounds/rounds-user-already-in-round",
               "api-reference/rounds/get-last-round-winners",
-              "api-reference/rounds/get-round-results"
+              "api-reference/rounds/get-round-results",
+              "api-reference/rounds/round-user-answer"
             ]
           },
           {
