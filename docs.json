@@ -81,6 +81,7 @@
               "api-reference/users/toggle-user-favorites",
               "api-reference/users/get-user-favorites",
               "api-reference/users/get-user-certificates",
+              "api-reference/users/get-user-certificate-by-id",
               "api-reference/users/activate-user-certificate-by-id",
               "api-reference/users/get-user-upcoming-rounds"
             ]
