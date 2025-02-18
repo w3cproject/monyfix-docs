@@ -83,7 +83,8 @@
               "api-reference/users/get-user-certificates",
               "api-reference/users/get-user-certificate-by-id",
               "api-reference/users/activate-user-certificate-by-id",
-              "api-reference/users/get-user-upcoming-rounds"
+              "api-reference/users/get-user-upcoming-rounds",
+              "api-reference/users/get-user-statistics"
             ]
           },
           {
