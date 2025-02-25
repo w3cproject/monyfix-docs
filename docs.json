@@ -148,6 +148,7 @@
               "api-reference/rounds/get-rounds-as-categories",
               "api-reference/rounds/get-upcoming-rounds",
               "api-reference/rounds/invite-single-user-to-round",
+              "api-reference/rounds/invite-team-to-round",
               "api-reference/rounds/join-round",
               "api-reference/rounds/leave-round",
               "api-reference/rounds/check-user-round-status",
