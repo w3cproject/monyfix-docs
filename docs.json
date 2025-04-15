@@ -157,7 +157,8 @@
               "api-reference/rounds/get-round-results",
               "api-reference/rounds/get-round-question",
               "api-reference/rounds/get-round-countdown",
-              "api-reference/rounds/round-user-answer"
+              "api-reference/rounds/round-user-answer",
+              "api-reference/rounds/get-round-participants-status"
             ]
           },
           {
